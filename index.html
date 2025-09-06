@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Billing System</h1>
+            <nav.class="nav-menu">
+                <button class="nav-btn" onclick="showCreateInvoice()">Create Invoice</button>
+                <button class="nav-btn" onclick="showInvoiceHistory()">Invoice History</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Create Invoice Section -->
+            <div id="create-invoice-section" class="section">
+                <h2>Create New Invoice</h2>
+                <form id="invoice-form">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name:</label>
+                        <input type="text" id="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Customer Email:</label>
+                        <input type="email" id="customerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerAddress">Customer Address:</label>
+                        <textarea id="customerAddress" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="items">Items:</label>
+                        <div id="item-container">
+                            <div class="item-row">
+                                <input type="text" placeholder="Item Description" class="item-description" required>
+                                <input type="number" placeholder="Quantity" class="item-quantity" min="1" required>
+                                <input type="number" placeholder="Price" class="item-price" step="0.01" required>
+                                <button type="button" class="remove-item" onclick="removeItem(this)">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" class="add-item" onclick="addItem()">Add Item</button>
+                    </div>
+                    <div class="total-section">
+                        <strong>Total: <span id="total-amount">$0.00</span></strong>
+                    </div>
+                    <button type="submit" class="primary-btn">Generate Invoice</button>
+                </form>
+            </div>
+
+            <!-- Invoice History Section -->
+            <div id="invoice-history-section" class="section hidden">
+                <h2>Invoice History</h2>
+                <div class="filter-section">
+                    <input type="search" id="searchInvoices" placeholder="Search invoices by customer or invoice ID...">
+                    <button id="exportAll" class="secondary-btn">Export All as CSV</button>
+                </div>
+                <div id="invoiceList"></div>
+            </div>
+
+            <!-- Invoice Preview Section -->
+            <div id="invoice-preview-section" class="section hidden">
+                <button class="back-btn" onclick="hideInvoicePreview()">&#8192; Back</button>
+                <div id="invoice-preview"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
